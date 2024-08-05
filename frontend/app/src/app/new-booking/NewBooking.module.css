@@ -1,0 +1,28 @@
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #000; /* Ensure the text color is black */
+    background-color: #fff; /* Ensure the background color is white */
+  }
+  
+  .form-button {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .form-button:hover {
+    background-color: #0056b3; /* Darker shade of the primary color */
+  }

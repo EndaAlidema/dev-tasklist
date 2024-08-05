@@ -1,0 +1,21 @@
+.nav {
+    background-color: blue;
+    padding: 10px;
+  }
+  
+  .navList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navItem a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navItem a:hover {
+    text-decoration: underline;
+  }
