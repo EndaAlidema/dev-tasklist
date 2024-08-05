@@ -1,23 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2/promise'); // Using promise-based API
-
+const cors = require('cors');
+const pool = require('./database');
 const app = express();
 const port = 5001;
 
-const pool = mysql.createPool({
-  host: 'mysql',
-  user: 'my_user',
-  password: 'my_password',
-  database: 'my_database',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
-
+app.use(cors());
 app.use(bodyParser.json());
 
-// API endpoint to fetch all bookings
 app.get('/api/bookings', async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT * FROM bookings');
@@ -37,7 +27,7 @@ app.get('/api/bookings/:id', async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT * FROM bookings WHERE id = ?', [id]);
     console.log("Fetching booking by id: ", rows);
-    
+
     if (rows.length === 0) {
       res.status(404).send('Booking not found');
     } else {
@@ -51,6 +41,7 @@ app.get('/api/bookings/:id', async (req, res) => {
 
 // API endpoint to insert a booking
 app.post('/api/bookings', async (req, res) => {
+  console.log('Calling insert booking with body = ', req.body);
   const { service, doctor_name, start_time, end_time, date } = req.body;
   const insertQuery = 'INSERT INTO bookings (service, doctor_name, start_time, end_time, date) VALUES (?, ?, ?, ?, ?)';
 
